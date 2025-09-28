@@ -10,10 +10,13 @@ const Create = () => {
   const navigate = useNavigate();
     const {register, handleSubmit, reset} = useForm();
     const {data, setdata} = useContext(recipecontext)
-    const submitHandler = (recipe)=>{
+    const updateHandler = (recipe)=>{
         recipe.id = nanoid();
-        
-        setdata([...data, recipe]);
+        const copyData = [...data]
+        copyData.push(recipe)
+        setdata(copyData)
+        localStorage.setItem("recipes", JSON.stringify(copyData))
+        // setdata([...data, recipe]);
         toast.success("Recipe Created", {
       position: "top-right"
     });
@@ -21,7 +24,7 @@ const Create = () => {
         navigate("/recipes")
     }
   return (
-    <form onSubmit={handleSubmit(submitHandler)} className='flex flex-col w-[50%]'>
+    <form onSubmit={handleSubmit(updateHandler)} className='flex flex-col w-[50%]'>
         <input {...register("image")} className='border-b outline-0 p-1 text-2xl block' type="text" placeholder='Enter Image url' />
         <small className='text-red-500 mb-4'>This is how error will be shown.</small>
         <input {...register("title")} className='border-b outline-0 p-1 text-2xl block' type="text" placeholder='Recipe Title' />

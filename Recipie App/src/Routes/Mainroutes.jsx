@@ -5,25 +5,23 @@ import Recipes from '../Pages/Recipes'
 import About from '../Pages/About'
 import Create from '../Pages/Create'
 import SingleRecipe from '../Pages/SingleRecipe'
+import PageNotFound from '../Pages/PageNotFound'
+import Fav from '../Pages/Fav'
 
 const Mainroutes = () => {
-    return (
-
-        <>
-
-            <Routes>
-                <Route path='/' element={<Home />}></Route>
-                <Route path='/recipes' element={<Recipes/>}></Route>
-                <Route path='/create-recipe' element={<Create/>}></Route>
-                <Route path='/recipe/details/:id' element={<SingleRecipe/>}></Route>
-                <Route path='/about' element={<About/>}></Route>
-
-            </Routes>
-        </>
-
-
-
-    )
+  return (
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/recipes' element={<Recipes />} />
+        <Route path='/create-recipe' element={<Create />} />
+        <Route path='/recipe/details/:id' element={<SingleRecipe />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/favourites' element={<Fav />} />
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
+    </>
+  )
 }
 
 export default Mainroutes
